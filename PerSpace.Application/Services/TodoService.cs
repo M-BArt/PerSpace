@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using PerSpace.Application.ApiModel;
 using PerSpace.Application.DTOsModel;
+using PerSpace.Domain.DataModels;
 using PerSpace.Domain.Interfaces;
 
 
@@ -17,21 +19,34 @@ namespace PerSpace.Application.Services
 
         public async Task<IEnumerable<TodoGetAllDto>> TodoGetAll()
         {
-            var todoItem = await _todoRepository.GetAll();
+            var todoTask = await _todoRepository.GetAll();
 
-            return todoItem.Select(todoItem => new TodoGetAllDto
+            return todoTask.Select(todoTask => new TodoGetAllDto
             {
-                Id = todoItem.Id,
-                Title = todoItem.Title,
-                IsCompleted = todoItem.IsCompleted,
-                DueDate = todoItem.DueDate,
-                CreateTime = todoItem.CreateTime,
-                Category = todoItem.Category,
-                CompletedDate = todoItem.CompletedDate,
-                Recurring = todoItem.Recurring,
-                Description = todoItem.Description,
-                IsActive = todoItem.IsActive
+                Id = todoTask.Id,
+                Title = todoTask.Title,
+                IsCompleted = todoTask.IsCompleted,
+                DueDate = todoTask.DueDate,
+                CreateTime = todoTask.CreateTime,
+                Category = todoTask.Category,
+                CompletedDate = todoTask.CompletedDate,
+                Recurring = todoTask.Recurring,
+                Description = todoTask.Description,
+                IsActive = todoTask.IsActive
             }).AsEnumerable();
+        }
+
+        public async Task Create(TodoCreateRequest request)
+        {
+            var todoTask = new TodoCreate
+            {
+                Title = request.Title,
+                Description = request.Description,
+                Category = request.Category,
+                Recurring = request.Recurring,
+            };
+
+            await _todoRepository.Create(todoTask);
         }
     }
 }
