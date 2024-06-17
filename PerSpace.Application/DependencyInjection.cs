@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PerSpace.Application.Services;
 
 namespace PerSpace.Application
 {
@@ -6,7 +7,8 @@ namespace PerSpace.Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-
+            services.AddScoped<ITodoService, TodoService>();
+            
             return services;
         }
     }
