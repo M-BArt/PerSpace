@@ -13,4 +13,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PerSpace.Application\PerSpace.Application.csproj" />
+    <ProjectReference Include="..\PerSpace.Infrastructure\PerSpace.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
