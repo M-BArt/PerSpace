@@ -32,7 +32,23 @@ namespace PerSpace.API.Controllers
                 return StatusCode(500, "Internal Error Server");
             }
         }
-
+        // GET: /Todo/{taskId}
+        /// <summary>
+        /// Akcja do pobierania aktywnego zadania (Task) po Id.
+        /// </summary>
+        [HttpGet("Todo/{taskId}")]
+        public async Task<IActionResult> GetTask([FromRoute]Guid taskId)
+        {
+            try
+            {
+                return Ok(await _todoService.GetTask(taskId));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, "Internal Error Server");
+            }
+        }
         // POST: /Todo/
         /// <summary>
         /// Akcja do tworzenia nowego zadania (Task) w bazie danych.
@@ -72,5 +88,7 @@ namespace PerSpace.API.Controllers
                 return StatusCode(500, "Internal Error Server");
             }
         }
+
+
     }
 }

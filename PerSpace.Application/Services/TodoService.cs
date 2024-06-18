@@ -54,6 +54,9 @@ namespace PerSpace.Application.Services
             await _todoRepository.Delete(taskId);
         }
 
-        
+        public async Task<TodoGetTask> GetTask(Guid taskId)
+        {
+            return await _todoRepository.GetTask(taskId);
+        }
     }
 }

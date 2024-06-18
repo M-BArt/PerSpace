@@ -33,8 +33,7 @@ namespace PerSpace.Infrastructure.Data.Repositories
             {
                 await connection.OpenAsync();
                 var query = "SELECT * FROM Tasks WHERE IsActive = 1";
-                var todoItems = await connection.QueryAsync<TodoGetAll>(query);
-                return todoItems;
+                return await connection.QueryAsync<TodoGetAll>(query);
             }
         }
 
@@ -45,6 +44,16 @@ namespace PerSpace.Infrastructure.Data.Repositories
                 await connection.OpenAsync();
                 var query = "UPDATE Tasks SET IsActive = 0 WHERE Id = @Id AND WHERE IsActive = 1";
                 await connection.ExecuteAsync(query, new { Id = taskId });
+            }
+        }
+
+        public async Task<TodoGetTask> GetTask(Guid taskId)
+        {
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+                var query = "SELECT * FROM Tasks WHERE Id = @Id AND IsActive = 1";
+                return await connection.QuerySingleAsync<TodoGetTask>(query, new { Id = taskId });
             }
         }
     }

@@ -8,6 +8,7 @@ namespace PerSpace.Domain.Interfaces
         Task<IEnumerable<TodoGetAll>> GetAll();
         Task Create(TodoCreate task);
         Task Delete(Guid id);
+        Task<TodoGetTask> GetTask(Guid taskId);
     }
 }
  

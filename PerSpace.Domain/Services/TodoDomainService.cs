@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PerSpace.Domain.Services
+﻿namespace PerSpace.Domain.Services
 {
-    internal class TodoDomainService
+    public class TodoDomainService
     {
     }
 }
