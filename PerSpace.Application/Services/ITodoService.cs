@@ -7,5 +7,6 @@ namespace PerSpace.Application.Services
     {
         Task<IEnumerable<TodoGetAllDto>> TodoGetAll();
         Task Create(TodoCreateRequest request);
+        Task Delete(Guid taskId);
     }
 }

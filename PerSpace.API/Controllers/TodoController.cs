@@ -33,19 +33,38 @@ namespace PerSpace.API.Controllers
             }
         }
 
-
         // POST: /Todo/
         /// <summary>
         /// Akcja do tworzenia nowego zadania (Task) w bazie danych.
         /// </summary>
         /// <param name="request"></param>
         [HttpPost("Todo")]
-        public async Task<IActionResult> Create(TodoCreateRequest request)
+        public async Task<IActionResult> Create([FromBody] TodoCreateRequest request)
         {
             try
             {
                 await _todoService.Create(request);
-                return Ok("Stworzono nowe zadanie.");
+                return Ok("Stworzono nowe zadanie w bazie danych.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, "Internal Error Server");
+            }
+        }
+
+        // DELETE: /Todo/{task_id}
+        /// <summary>
+        /// Akcja do usuwania zadania (Task) w bazie danych.
+        /// </summary>
+        /// /// <param name="taskId"></param>
+        [HttpDelete("Todo/{taskId}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid taskId)
+        {
+            try
+            {
+                await _todoService.Delete(taskId);
+                return Ok("Usunięto zadanie z bazy danych");
             }
             catch (Exception ex)
             {

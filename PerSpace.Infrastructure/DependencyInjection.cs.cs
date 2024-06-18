@@ -11,8 +11,6 @@ namespace PerSpace.Infrastructure
         {
             Configuration.SetConfiguration(configuration);
 
-            services.AddScoped<ITodoRepository, TodoRepository>();
-
             return services;
         }
     }

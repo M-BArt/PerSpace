@@ -48,5 +48,12 @@ namespace PerSpace.Application.Services
 
             await _todoRepository.Create(todoTask);
         }
+
+        public async Task Delete(Guid taskId)
+        {
+            await _todoRepository.Delete(taskId);
+        }
+
+        
     }
 }

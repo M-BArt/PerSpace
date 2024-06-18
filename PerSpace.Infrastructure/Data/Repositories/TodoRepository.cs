@@ -32,9 +32,19 @@ namespace PerSpace.Infrastructure.Data.Repositories
             using (SqlConnection connection = new (_connectionString))
             {
                 await connection.OpenAsync();
-                var query = "SELECT * FROM Tasks";
+                var query = "SELECT * FROM Tasks WHERE IsActive = 1";
                 var todoItems = await connection.QueryAsync<TodoGetAll>(query);
                 return todoItems;
+            }
+        }
+
+        public async Task Delete(Guid taskId)
+        {
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+                var query = "UPDATE Tasks SET IsActive = 0 WHERE Id = @Id AND WHERE IsActive = 1";
+                await connection.ExecuteAsync(query, new { Id = taskId });
             }
         }
     }
