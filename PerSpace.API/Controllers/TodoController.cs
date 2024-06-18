@@ -32,6 +32,7 @@ namespace PerSpace.API.Controllers
                 return StatusCode(500, "Internal Error Server");
             }
         }
+        
         // GET: /Todo/{taskId}
         /// <summary>
         /// Akcja do pobierania aktywnego zadania (Task) po Id.
@@ -49,6 +50,7 @@ namespace PerSpace.API.Controllers
                 return StatusCode(500, "Internal Error Server");
             }
         }
+        
         // POST: /Todo/
         /// <summary>
         /// Akcja do tworzenia nowego zadania (Task) w bazie danych.
@@ -60,7 +62,7 @@ namespace PerSpace.API.Controllers
             try
             {
                 await _todoService.Create(request);
-                return Ok("Stworzono nowe zadanie w bazie danych.");
+                return Ok("Stworzono nowe zadanie w bazie danych");
             }
             catch (Exception ex)
             {
@@ -89,6 +91,24 @@ namespace PerSpace.API.Controllers
             }
         }
 
-
+        // PATCH: /Todo/{task_id}
+        /// <summary>
+        /// Akcja do usuwania zadania (Task) w bazie danych.
+        /// </summary>
+        /// /// <param name="taskId"></param>
+        [HttpPatch("Todo/{taskId}")]
+        public async Task<IActionResult> Update([FromBody]TodoUpdateRequest request, [FromRoute] Guid taskId)
+        {
+            try
+            {
+                await _todoService.Update(request, taskId);
+                return Ok("Zadanie zaktualizowane");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, "Internal Error Server");
+            }
+        }
     }
 }

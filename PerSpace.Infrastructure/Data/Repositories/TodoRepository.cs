@@ -5,6 +5,7 @@ using PerSpace.Application.DTOsModel;
 using PerSpace.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using PerSpace.Domain.DataModels;
+using System.Data;
 
 namespace PerSpace.Infrastructure.Data.Repositories
 {
@@ -54,6 +55,31 @@ namespace PerSpace.Infrastructure.Data.Repositories
                 await connection.OpenAsync();
                 var query = "SELECT * FROM Tasks WHERE Id = @Id AND IsActive = 1";
                 return await connection.QuerySingleAsync<TodoGetTask>(query, new { Id = taskId });
+            }
+        }
+
+        public async Task Update(TodoUpdate todoTask, Guid taskId)
+        {
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                DynamicParameters _params = new();
+
+                _params.AddDynamicParams(todoTask);
+                _params.Add("Id", taskId);
+
+                var query = @"
+                UPDATE Tasks
+                SET
+                    Title = @Title,
+                    Recurring = @Recurring,
+                    Description = @Description,
+                    Category = @Category,
+                    DueDate = @DueDate
+                WHERE Id = @Id";
+   
+                await connection.ExecuteAsync(query, _params);
             }
         }
     }

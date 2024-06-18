@@ -3,6 +3,7 @@ using PerSpace.Application.ApiModel;
 using PerSpace.Application.DTOsModel;
 using PerSpace.Domain.DataModels;
 using PerSpace.Domain.Interfaces;
+using PerSpace.Domain.Services;
 
 
 namespace PerSpace.Application.Services
@@ -10,10 +11,12 @@ namespace PerSpace.Application.Services
     public class TodoService : ITodoService
     {
         private readonly ITodoRepository _todoRepository;
+        //private readonly TodoDomainService _todoDomainService;
         private readonly ILogger<TodoService> _logger;
         public TodoService(ITodoRepository todoRepository, ILogger<TodoService> logger)
         {
-            _todoRepository = todoRepository ?? throw new ArgumentNullException(nameof(todoRepository));
+            _todoRepository = todoRepository;
+            //_todoDomainService = todoDomainService;
             _logger = logger;
         }
 
@@ -57,6 +60,23 @@ namespace PerSpace.Application.Services
         public async Task<TodoGetTask> GetTask(Guid taskId)
         {
             return await _todoRepository.GetTask(taskId);
+        }
+
+        public async Task Update(TodoUpdateRequest request, Guid taskId)
+        {
+
+            var todoTask = new TodoUpdate
+            {
+                Title = request.Title,
+                Recurring = request.Recurring,
+                Description = request.Description,
+                Category = request.Category,
+                DueDate = request.DueDate
+            };
+
+            //todoTask = await _todoDomainService.CheckEmptyOrNullValue(todoTask);
+
+            await _todoRepository.Update(todoTask, taskId);
         }
     }
 }
