@@ -82,5 +82,21 @@ namespace PerSpace.Infrastructure.Data.Repositories
                 await connection.ExecuteAsync(query, _params);
             }
         }
+
+        public async Task CompleteTask(TodoCompleteTask todoTask, Guid taskId)
+        {
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                DynamicParameters _params = new();
+                _params.AddDynamicParams(todoTask);
+                _params.Add("Id", taskId);
+
+                var query = "UPDATE Tasks SET IsCompleted = @IsCompleted, CompletedDate = @CompletedDate WHERE Id = @Id";
+
+                await connection.ExecuteAsync(query, _params);
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace PerSpace.Application.DTOsModel
         public Guid Id { get; set; }
         public DateTime CreateTime { get; set; }
         public string Category { get; set; }  
-        public string CompletedDate { get; set; }
+        public DateTime CompletedDate { get; set; }
         public bool Recurring { get; set; }
         public string Title { get; set; }
         public string Description { get; set; } 

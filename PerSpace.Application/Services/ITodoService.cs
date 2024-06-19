@@ -11,5 +11,6 @@ namespace PerSpace.Application.Services
         Task Delete(Guid taskId);
         Task<TodoGetTask> GetTask(Guid taskId);
         Task Update(TodoUpdateRequest request, Guid taskId);
+        Task CompleteTask(Guid taskId);
     }
 }

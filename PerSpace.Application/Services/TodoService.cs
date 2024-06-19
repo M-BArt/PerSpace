@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using PerSpace.Application.ApiModel;
 using PerSpace.Application.DTOsModel;
 using PerSpace.Domain.DataModels;
@@ -11,12 +12,12 @@ namespace PerSpace.Application.Services
     public class TodoService : ITodoService
     {
         private readonly ITodoRepository _todoRepository;
-        //private readonly TodoDomainService _todoDomainService;
+        private readonly TodoDomainService _todoDomainService;
         private readonly ILogger<TodoService> _logger;
-        public TodoService(ITodoRepository todoRepository, ILogger<TodoService> logger)
+        public TodoService(ITodoRepository todoRepository,TodoDomainService todoDomainService, ILogger<TodoService> logger)
         {
             _todoRepository = todoRepository;
-            //_todoDomainService = todoDomainService;
+            _todoDomainService = todoDomainService;
             _logger = logger;
         }
 
@@ -47,7 +48,10 @@ namespace PerSpace.Application.Services
                 Description = request.Description,
                 Category = request.Category,
                 Recurring = request.Recurring,
+                DueDate = request.DueDate
             };
+
+            await _todoDomainService.DateValidation(todoTask.DueDate);
 
             await _todoRepository.Create(todoTask);
         }
@@ -74,9 +78,23 @@ namespace PerSpace.Application.Services
                 DueDate = request.DueDate
             };
 
-            //todoTask = await _todoDomainService.CheckEmptyOrNullValue(todoTask);
-
             await _todoRepository.Update(todoTask, taskId);
+        }
+
+        public async Task CompleteTask(Guid taskId)
+        {
+            TodoGetTask task = await _todoRepository.GetTask(taskId);
+
+            var completeTask = new TodoCompleteTask
+            {
+                IsCompleted = task.IsCompleted,
+                CompletedDate = task.CompletedDate,
+                IsActive = task.IsActive,
+            };
+
+            completeTask = await _todoDomainService.MarkCompleteTask(completeTask);
+
+            await _todoRepository.CompleteTask(completeTask, taskId);
         }
     }
 }

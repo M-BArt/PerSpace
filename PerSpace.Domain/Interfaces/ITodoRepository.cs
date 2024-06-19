@@ -10,6 +10,7 @@ namespace PerSpace.Domain.Interfaces
         Task Delete(Guid id);
         Task<TodoGetTask> GetTask(Guid taskId);
         Task Update(TodoUpdate todoTask, Guid taskId);
+        Task CompleteTask(TodoCompleteTask todoTask, Guid taskId);
     }
 }
  

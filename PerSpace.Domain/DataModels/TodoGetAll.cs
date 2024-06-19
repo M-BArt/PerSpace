@@ -19,7 +19,7 @@ namespace PerSpace.Domain.Models
 
         public DateTime DueDate { get; set; }
         public bool IsCompleted { get; set; }
-        public string CompletedDate { get; set; }
+        public DateTime CompletedDate { get; set; }
 
         public bool IsActive { get; set; }
     }

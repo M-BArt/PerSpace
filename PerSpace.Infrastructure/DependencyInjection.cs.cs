@@ -12,6 +12,7 @@ namespace PerSpace.Infrastructure
         {
             Configuration.SetConfiguration(configuration);
             
+            services.AddScoped<Domain.Services.TodoDomainService>();
             services.AddScoped<ITodoRepository, TodoRepository>();
             
             return services;

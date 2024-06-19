@@ -91,7 +91,7 @@ namespace PerSpace.API.Controllers
             }
         }
 
-        // PATCH: /Todo/{task_id}
+        // PATCH: /Todo/{taskid}
         /// <summary>
         /// Akcja do usuwania zadania (Task) w bazie danych.
         /// </summary>
@@ -103,6 +103,27 @@ namespace PerSpace.API.Controllers
             {
                 await _todoService.Update(request, taskId);
                 return Ok("Zadanie zaktualizowane");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, "Internal Error Server");
+            }
+        }
+
+        // POST: /Todo/{taskId}/complete
+        /// <summary>
+        /// Akcja do zakończenia zadania (Task).
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <returns></returns>
+        [HttpPost("Todo/{taskId}/complete")]
+        public async Task<IActionResult> CompleteTask([FromRoute] Guid taskId)
+        {
+            try
+            {
+                await _todoService.CompleteTask(taskId);
+                return Ok("Zadanie wykonane");
             }
             catch (Exception ex)
             {
