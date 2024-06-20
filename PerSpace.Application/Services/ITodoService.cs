@@ -1,6 +1,6 @@
 ﻿using PerSpace.Application.ApiModel;
 using PerSpace.Application.DTOsModel;
-using PerSpace.Domain.DataModels;
+using PerSpace.Domain.DataModels.Todo;
 
 namespace PerSpace.Application.Services
 {

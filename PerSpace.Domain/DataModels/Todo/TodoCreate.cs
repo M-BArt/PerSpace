@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PerSpace.Domain.DataModels
+namespace PerSpace.Domain.DataModels.Todo
 {
     public class TodoCreate
     {

@@ -1,11 +1,10 @@
-﻿using PerSpace.Domain.Models;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Dapper;
 using PerSpace.Application.DTOsModel;
 using PerSpace.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
-using PerSpace.Domain.DataModels;
 using System.Data;
+using PerSpace.Domain.DataModels.Todo;
 
 namespace PerSpace.Infrastructure.Data.Repositories
 {

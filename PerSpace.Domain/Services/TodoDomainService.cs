@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PerSpace.Domain.DataModels;
+using PerSpace.Domain.DataModels.Todo;
 
 namespace PerSpace.Domain.Services
 {
