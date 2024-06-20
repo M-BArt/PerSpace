@@ -61,9 +61,23 @@ namespace PerSpace.Application.Services
             await _todoRepository.Delete(taskId);
         }
 
-        public async Task<TodoGetTask> GetTask(Guid taskId)
+        public async Task<TodoGetTaskDto> GetTask(Guid taskId)
         {
-            return await _todoRepository.GetTask(taskId);
+            var todoTaskData = await _todoRepository.GetTask(taskId);
+
+            var todoTask = new TodoGetTaskDto
+            {
+                Title = todoTaskData.Title,
+                Description = todoTaskData.Description,
+                Category = todoTaskData.Category,
+                Recurring = todoTaskData.Recurring,
+                DueDate = todoTaskData.DueDate,
+                IsCompleted = todoTaskData.IsCompleted,
+                CompletedDate = todoTaskData.CompletedDate,
+                IsActive = todoTaskData.IsActive
+            };
+
+            return todoTask;
         }
 
         public async Task Update(TodoUpdateRequest request, Guid taskId)
