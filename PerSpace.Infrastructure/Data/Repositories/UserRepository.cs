@@ -15,6 +15,11 @@ namespace PerSpace.Infrastructure.Data.Repositories
             throw new NotImplementedException();
         }
 
+        public Task Delete(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<UserGet> Get(Guid userId)
         {
             throw new NotImplementedException();
