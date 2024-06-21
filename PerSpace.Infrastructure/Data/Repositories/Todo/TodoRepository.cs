@@ -1,12 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
 using Dapper;
 using PerSpace.Application.DTOsModel;
-using PerSpace.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using PerSpace.Domain.DataModels.Todo;
+using PerSpace.Domain.Interfaces.Todo;
 
-namespace PerSpace.Infrastructure.Data.Repositories
+namespace PerSpace.Infrastructure.Data.Repositories.Todo
 {
     public class TodoRepository : ITodoRepository
     {
@@ -29,7 +29,7 @@ namespace PerSpace.Infrastructure.Data.Repositories
 
         public async Task<IEnumerable<TodoGetAll>> GetAll()
         {
-            using (SqlConnection connection = new (_connectionString))
+            using (SqlConnection connection = new(_connectionString))
             {
                 await connection.OpenAsync();
                 var query = "SELECT * FROM Tasks WHERE IsActive = 1";
@@ -77,7 +77,7 @@ namespace PerSpace.Infrastructure.Data.Repositories
                     Category = @Category,
                     DueDate = @DueDate
                 WHERE Id = @Id";
-   
+
                 await connection.ExecuteAsync(query, _params);
             }
         }

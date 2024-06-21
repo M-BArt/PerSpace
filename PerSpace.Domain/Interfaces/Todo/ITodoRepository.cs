@@ -1,6 +1,6 @@
 ﻿using PerSpace.Domain.DataModels.Todo;
 
-namespace PerSpace.Domain.Interfaces
+namespace PerSpace.Domain.Interfaces.Todo
 {
     public interface ITodoRepository
     {
@@ -12,4 +12,4 @@ namespace PerSpace.Domain.Interfaces
         Task CompleteTask(TodoCompleteTask todoTask, Guid taskId);
     }
 }
- 
+

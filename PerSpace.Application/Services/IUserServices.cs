@@ -13,7 +13,7 @@ namespace PerSpace.Application.Services
         Task<IEnumerable<UserGetAll>> GetAll(Guid userId);
         Task<UserGet> Get(Guid userId);
         Task Login(UserLoginRequest request, Guid userId);
-        Task Register(UserRegisterRequest request, Guid userId);
+        Task Register(UserRegisterRequest request);
         Task Delete(Guid userId);
     }
 }

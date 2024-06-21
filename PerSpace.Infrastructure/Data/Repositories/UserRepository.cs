@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using PerSpace.Domain.DataModels.User;
 using PerSpace.Domain.Interfaces;
 
@@ -10,34 +13,61 @@ namespace PerSpace.Infrastructure.Data.Repositories
 {
     internal class UserRepository : IUserRepository
     {
-        public Task Delete(UserDelete user, Guid userId)
+        private readonly string _connectionString;
+
+        public UserRepository(IConfiguration configuration)
         {
-            throw new NotImplementedException();
+            _connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Connection string not provided");
         }
 
-        public Task Delete(Guid userId)
+        public async Task Delete(Guid userId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+                var query = "UPDATE User SET IsActive = 0 FROM User WHERE Id = @userId";
+                await connection.ExecuteAsync(query, userId);
+            }
         }
 
-        public Task<UserGet> Get(Guid userId)
+        public async Task<UserGet> GetProfile(Guid userId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+                var query = "SELECT * FROM User WHERE Id = @userId";
+                return await connection.QuerySingleAsync<UserGet>(query, userId);
+            }
         }
 
-        public Task<IEnumerable<UserGetAll>> GetAll(Guid userId)
+        public async Task<IEnumerable<UserGetAll>> GetAll()
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+                var query = "SELECT * FROM User";
+                return await connection.QueryAsync<UserGetAll>(query);
+            }
         }
 
-        public Task Login(UserLogin user, Guid userId)
+        public async Task<UserAccount> GetUserAccount(string email)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+                var query = "SELECT Id, Email, PasswordHash, PasswordSalt FROM User WHERE Email = @email";
+                return await connection.QuerySingleAsync<UserAccount>(query, email);
+            }
         }
 
-        public Task Register(UserRegister user, Guid userId)
+        public async Task Create(UserCreate user)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new(_connectionString))
+            {
+                await connection.OpenAsync();
+                var query = "INSERT INTO Tasks (Email, Password, Firstname, Lastname) VALUES(@Email, @Password, @Firstname, @Lastname)";
+                await connection.ExecuteAsync(query, user);
+            }
         }
     }
 }

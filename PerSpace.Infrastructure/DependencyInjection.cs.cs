@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PerSpace.Application.Services;
-using PerSpace.Domain.Interfaces;
-using PerSpace.Infrastructure.Data.Repositories;
+using PerSpace.Domain.Interfaces.Todo;
+using PerSpace.Infrastructure.Data.Repositories.Todo;
 
 namespace PerSpace.Infrastructure
 {
@@ -12,7 +12,7 @@ namespace PerSpace.Infrastructure
         {
             Configuration.SetConfiguration(configuration);
             
-            services.AddScoped<Domain.Services.TodoDomainService>();
+            
             services.AddScoped<ITodoRepository, TodoRepository>();
             
             return services;

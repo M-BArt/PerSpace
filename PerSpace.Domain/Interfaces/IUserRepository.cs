@@ -4,10 +4,10 @@ namespace PerSpace.Domain.Interfaces
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<UserGetAll>> GetAll(Guid userId);
-        Task<UserGet> Get(Guid userId);
-        Task Login(UserLogin user, Guid userId);
-        Task Register(UserRegister user, Guid userId);
+        Task<IEnumerable<UserGetAll>> GetAll();
+        Task<UserGet> GetProfile(Guid userId);
+        Task<UserAccount> GetUserAccount(string email);
+        Task Create(UserCreate user);
         Task Delete(Guid userId);
     }
 }

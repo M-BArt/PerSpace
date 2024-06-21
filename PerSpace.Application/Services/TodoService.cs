@@ -1,11 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using PerSpace.Application.ApiModel;
 using PerSpace.Application.DTOsModel;
-using PerSpace.Domain.DataModels;
 using PerSpace.Domain.DataModels.Todo;
-using PerSpace.Domain.Interfaces;
-using PerSpace.Domain.Services;
+using PerSpace.Domain.Interfaces.Todo;
 
 
 namespace PerSpace.Application.Services
@@ -13,12 +10,10 @@ namespace PerSpace.Application.Services
     public class TodoService : ITodoService
     {
         private readonly ITodoRepository _todoRepository;
-        private readonly TodoDomainService _todoDomainService;
         private readonly ILogger<TodoService> _logger;
-        public TodoService(ITodoRepository todoRepository,TodoDomainService todoDomainService, ILogger<TodoService> logger)
+        public TodoService(ITodoRepository todoRepository, ILogger<TodoService> logger)
         {
             _todoRepository = todoRepository;
-            _todoDomainService = todoDomainService;
             _logger = logger;
         }
 
@@ -52,7 +47,8 @@ namespace PerSpace.Application.Services
                 DueDate = request.DueDate
             };
 
-            await _todoDomainService.DateValidation(todoTask.DueDate);
+            if (todoTask.DueDate <= DateTime.Now)
+                throw new Exception("Invalid date");
 
             await _todoRepository.Create(todoTask);
         }
@@ -107,7 +103,13 @@ namespace PerSpace.Application.Services
                 IsActive = task.IsActive,
             };
 
-            completeTask = await _todoDomainService.MarkCompleteTask(completeTask);
+            if (!completeTask.IsActive) throw new Exception("Zadanie nie istnieje w bazie danych");
+
+            if (completeTask.IsCompleted == true) throw new Exception("Zadanie jest już wykonane");
+
+            completeTask.IsCompleted = true;
+
+            completeTask.CompletedDate = DateTime.Now;
 
             await _todoRepository.CompleteTask(completeTask, taskId);
         }
