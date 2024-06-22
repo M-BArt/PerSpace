@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseProxy", "ReverseProx
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{76F18099-4E6E-4B1E-9CB0-1B0887BB0FFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackOffice", "BackOffice\BackOffice.csproj", "{041832C9-3F63-449B-9CDD-2CCD30F29FAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{76F18099-4E6E-4B1E-9CB0-1B0887BB0FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76F18099-4E6E-4B1E-9CB0-1B0887BB0FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76F18099-4E6E-4B1E-9CB0-1B0887BB0FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{041832C9-3F63-449B-9CDD-2CCD30F29FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{041832C9-3F63-449B-9CDD-2CCD30F29FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{041832C9-3F63-449B-9CDD-2CCD30F29FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{041832C9-3F63-449B-9CDD-2CCD30F29FAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
