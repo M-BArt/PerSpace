@@ -5,13 +5,17 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerSpace.API", "PerSpace.API\PerSpace.API.csproj", "{AAAFD654-27AD-4CD4-A171-9AF8E786E621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerSpace.Application", "PerSpace.Application\PerSpace.Application.csproj", "{572F8099-9187-47D6-858A-8349EED4D73D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerSpace.Application", "PerSpace.Application\PerSpace.Application.csproj", "{572F8099-9187-47D6-858A-8349EED4D73D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerSpace.Domain", "PerSpace.Domain\PerSpace.Domain.csproj", "{66881CA7-F5AA-4BAB-B515-CF3D9C4D9193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerSpace.Domain", "PerSpace.Domain\PerSpace.Domain.csproj", "{66881CA7-F5AA-4BAB-B515-CF3D9C4D9193}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerSpace.Infrastructure", "PerSpace.Infrastructure\PerSpace.Infrastructure.csproj", "{1877D199-09D0-476F-BA21-1712ABD6C10D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerSpace.Infrastructure", "PerSpace.Infrastructure\PerSpace.Infrastructure.csproj", "{1877D199-09D0-476F-BA21-1712ABD6C10D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{21A5EE13-DB47-4B93-AE9D-EA39DF3417F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{21A5EE13-DB47-4B93-AE9D-EA39DF3417F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseProxy", "ReverseProxy\ReverseProxy.csproj", "{8269260F-475D-4CF0-BA70-121647B015BF}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{47AC8908-EBA3-4644-BEB2-B61CFC928E6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{21A5EE13-DB47-4B93-AE9D-EA39DF3417F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21A5EE13-DB47-4B93-AE9D-EA39DF3417F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21A5EE13-DB47-4B93-AE9D-EA39DF3417F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8269260F-475D-4CF0-BA70-121647B015BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8269260F-475D-4CF0-BA70-121647B015BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8269260F-475D-4CF0-BA70-121647B015BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8269260F-475D-4CF0-BA70-121647B015BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47AC8908-EBA3-4644-BEB2-B61CFC928E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47AC8908-EBA3-4644-BEB2-B61CFC928E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47AC8908-EBA3-4644-BEB2-B61CFC928E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47AC8908-EBA3-4644-BEB2-B61CFC928E6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

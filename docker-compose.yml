@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  perspace.api:
+    image: ${DOCKER_REGISTRY-}perspaceapi
+    build:
+      context: .
+      dockerfile: PerSpace.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+    ports:
+      - "8080:80"
+      - "8081:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  reverseproxy:
+    image: ${DOCKER_REGISTRY-}reverseproxy
+    build:
+      context: .
+      dockerfile: ReverseProxy/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8090
+      - ASPNETCORE_HTTPS_PORTS=8091
+    ports:
+      - "8090:80"
+      - "8091:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+

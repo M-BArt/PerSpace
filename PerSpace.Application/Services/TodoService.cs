@@ -3,6 +3,7 @@ using PerSpace.Application.ApiModel;
 using PerSpace.Application.DTOsModel;
 using PerSpace.Domain.DataModels.Todo;
 using PerSpace.Domain.Interfaces.Todo;
+using Shared.Models.Todo.DTOsModel;
 
 
 namespace PerSpace.Application.Services

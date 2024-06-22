@@ -1,6 +1,5 @@
 ﻿using PerSpace.Application.ApiModel;
-using PerSpace.Application.DTOsModel;
-using PerSpace.Domain.DataModels.Todo;
+using Shared.Models.Todo.DTOsModel;
 
 namespace PerSpace.Application.Services
 {
@@ -9,7 +8,7 @@ namespace PerSpace.Application.Services
         Task<IEnumerable<TodoGetAllDto>> TodoGetAll();
         Task Create(TodoCreateRequest request);
         Task Delete(Guid taskId);
-        Task<TodoGetTaskDto> GetTask(Guid taskId);
+        Task<Shared.Models.Todo.DTOsModel.TodoGetTaskDto> GetTask(Guid taskId);
         Task Update(TodoUpdateRequest request, Guid taskId);
         Task CompleteTask(Guid taskId);
     }

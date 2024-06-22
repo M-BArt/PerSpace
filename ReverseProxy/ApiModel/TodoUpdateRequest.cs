@@ -4,19 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PerSpace.Application.DTOsModel
+namespace ReverseProxy.ApiModel
 {
-    public class TodoGetTaskDto
+    public class TodoUpdateRequest
     {
         public string Title { get; set; }
+        public bool Recurring { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-
-        public bool Recurring { get; set; }
-
         public DateTime DueDate { get; set; }
-        public bool IsCompleted { get; set; }
-        public DateTime CompletedDate { get; set; }
-        public bool IsActive { get; set; }
     }
 }
