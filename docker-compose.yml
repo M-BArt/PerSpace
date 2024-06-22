@@ -6,29 +6,24 @@ services:
     build:
       context: .
       dockerfile: PerSpace.API/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
-    ports:
-      - "8080:80"
-      - "8081:443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    networks:
+      - mynetwork
   reverseproxy:
     image: ${DOCKER_REGISTRY-}reverseproxy
     build:
       context: .
       dockerfile: ReverseProxy/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8090
-      - ASPNETCORE_HTTPS_PORTS=8091
+    networks:
+      - mynetwork
+  db:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
     ports:
-      - "8090:80"
-      - "8091:443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-
+      - "1433:1433"
+    environment:
+      MSSQL_SA_PASSWORD: "6858212ASDzxc"
+      ACCEPT_EULA: "Y"
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    driver: bridge

@@ -1,5 +1,6 @@
 
 using System.Security.Cryptography.X509Certificates;
+using ReverseProxy.Services;
 
 namespace ReverseProxy
 {
@@ -14,10 +15,10 @@ namespace ReverseProxy
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddScoped<ITodoService, TodoService>();
             builder.Services.AddHttpClient("TodoAppClient", httpClient =>
             {
-                httpClient.BaseAddress = new Uri("https://TodoAppClient.com/");
+                httpClient.BaseAddress = new Uri("http://perspace.api:8080/");
             });
 
             var app = builder.Build();
@@ -29,7 +30,7 @@ namespace ReverseProxy
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
