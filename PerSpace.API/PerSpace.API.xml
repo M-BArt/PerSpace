@@ -4,25 +4,6 @@
         <name>PerSpace.API</name>
     </assembly>
     <members>
-        <member name="M:PerSpace.API.Controllers.Todo.TodoController.CompleteTask(System.Guid)">
-            <summary>
-            Akcja do zakończenia zadania (Task).
-            </summary>
-            <param name="taskId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:PerSpace.API.Controllers.Todo.TodoController.Create(PerSpace.Application.ApiModel.TodoCreateRequest)">
-            <summary>
-            Akcja do tworzenia nowego zadania (Task) w bazie danych.
-            </summary>
-            <param name="request"></param>
-        </member>
-        <member name="M:PerSpace.API.Controllers.Todo.TodoController.Delete(System.Guid)">
-            <summary>
-            Akcja do usuwania zadania (Task) w bazie danych.
-            </summary>
-            /// <param name="taskId"></param>
-        </member>
         <member name="M:PerSpace.API.Controllers.Todo.TodoController.GetTask(System.Guid)">
             <summary>
             Akcja do pobierania aktywnego zadania (Task) po Id.
@@ -32,12 +13,6 @@
             <summary>
             Akcja do pobierania wszystkich aktywnych zadań (Tasks).
             </summary>
-        </member>
-        <member name="M:PerSpace.API.Controllers.Todo.TodoController.Update(PerSpace.Application.ApiModel.TodoUpdateRequest,System.Guid)">
-            <summary>
-            Akcja do usuwania zadania (Task) w bazie danych.
-            </summary>
-            /// <param name="taskId"></param>
         </member>
         <member name="M:PerSpace.API.Controllers.UserController.UserController.Delete">
             <summary>

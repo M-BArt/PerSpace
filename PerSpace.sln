@@ -19,6 +19,10 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackOffice", "BackOffice\BackOffice.csproj", "{041832C9-3F63-449B-9CDD-2CCD30F29FAD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerSpace", "PerSpace", "{0A829576-69E7-43C7-8044-41F2B5A16B5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackOff", "BackOff", "{2A461991-9342-4DFA-B2A4-966E1D18BBD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +64,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AAAFD654-27AD-4CD4-A171-9AF8E786E621} = {0A829576-69E7-43C7-8044-41F2B5A16B5E}
+		{572F8099-9187-47D6-858A-8349EED4D73D} = {0A829576-69E7-43C7-8044-41F2B5A16B5E}
+		{66881CA7-F5AA-4BAB-B515-CF3D9C4D9193} = {0A829576-69E7-43C7-8044-41F2B5A16B5E}
+		{1877D199-09D0-476F-BA21-1712ABD6C10D} = {0A829576-69E7-43C7-8044-41F2B5A16B5E}
+		{041832C9-3F63-449B-9CDD-2CCD30F29FAD} = {2A461991-9342-4DFA-B2A4-966E1D18BBD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABE85C2E-DFCC-43EA-8FCF-9D3824517305}

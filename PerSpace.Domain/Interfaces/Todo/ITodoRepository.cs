@@ -1,4 +1,4 @@
-﻿using PerSpace.Domain.DataModels.Todo;
+﻿using Shared.Models.Todo.DataModels;
 
 namespace PerSpace.Domain.Interfaces.Todo
 {

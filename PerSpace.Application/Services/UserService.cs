@@ -1,7 +1,7 @@
-﻿using System.Security.Cryptography;
-using PerSpace.Application.ApiModel;
-using PerSpace.Domain.DataModels.User;
+﻿using PerSpace.Application.ApiModel;
 using PerSpace.Domain.Interfaces;
+using Shared.Models.User.User;
+using System.Security.Cryptography;
 
 namespace PerSpace.Application.Services
 {

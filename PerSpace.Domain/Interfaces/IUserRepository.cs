@@ -1,4 +1,4 @@
-﻿using PerSpace.Domain.DataModels.User;
+﻿using Shared.Models.User.User;
 
 namespace PerSpace.Domain.Interfaces
 {

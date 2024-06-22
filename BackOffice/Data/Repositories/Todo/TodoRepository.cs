@@ -1,10 +1,9 @@
-﻿using Dapper;
+﻿using BackOffice.Interfaces.Todo;
+using Dapper;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using PerSpace.Domain.Interfaces.Todo;
 using Shared.Models.Todo.DataModels;
 
-namespace PerSpace.Infrastructure.Data.Repositories.Todo
+namespace BackOffice.Data.Repositories.Todo
 {
     public class TodoRepository : ITodoRepository
     {

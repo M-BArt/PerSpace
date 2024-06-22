@@ -1,4 +1,4 @@
-﻿using BackOffice.ApiModel;
+﻿using Shared.Models.Todo.ApiModels;
 using Shared.Models.Todo.DTOsModel;
 
 namespace BackOffice.Services

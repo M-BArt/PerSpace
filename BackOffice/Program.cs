@@ -1,4 +1,8 @@
 
+using BackOffice.Data.Repositories.Todo;
+using BackOffice.Interfaces.Todo;
+using BackOffice.Services;
+
 namespace BackOffice
 {
     public class Program
@@ -13,6 +17,9 @@ namespace BackOffice
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+            builder.Services.AddScoped<ITodoService, TodoService>();
 
             var app = builder.Build();
 

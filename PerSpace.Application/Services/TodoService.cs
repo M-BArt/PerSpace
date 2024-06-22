@@ -1,7 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using PerSpace.Application.ApiModel;
-using PerSpace.Application.DTOsModel;
-using PerSpace.Domain.DataModels.Todo;
 using PerSpace.Domain.Interfaces.Todo;
 using Shared.Models.Todo.DTOsModel;
 
@@ -37,28 +34,6 @@ namespace PerSpace.Application.Services
             }).AsEnumerable();
         }
 
-        public async Task Create(TodoCreateRequest request)
-        {
-            var todoTask = new TodoCreate
-            {
-                Title = request.Title,
-                Description = request.Description,
-                Category = request.Category,
-                Recurring = request.Recurring,
-                DueDate = request.DueDate
-            };
-
-            if (todoTask.DueDate <= DateTime.Now)
-                throw new Exception("Invalid date");
-
-            await _todoRepository.Create(todoTask);
-        }
-
-        public async Task Delete(Guid taskId)
-        {
-            await _todoRepository.Delete(taskId);
-        }
-
         public async Task<TodoGetTaskDto> GetTask(Guid taskId)
         {
             var todoTaskData = await _todoRepository.GetTask(taskId);
@@ -76,43 +51,6 @@ namespace PerSpace.Application.Services
             };
 
             return todoTask;
-        }
-
-        public async Task Update(TodoUpdateRequest request, Guid taskId)
-        {
-
-            var todoTask = new TodoUpdate
-            {
-                Title = request.Title,
-                Recurring = request.Recurring,
-                Description = request.Description,
-                Category = request.Category,
-                DueDate = request.DueDate
-            };
-
-            await _todoRepository.Update(todoTask, taskId);
-        }
-
-        public async Task CompleteTask(Guid taskId)
-        {
-            TodoGetTask task = await _todoRepository.GetTask(taskId);
-
-            var completeTask = new TodoCompleteTask
-            {
-                IsCompleted = task.IsCompleted,
-                CompletedDate = task.CompletedDate,
-                IsActive = task.IsActive,
-            };
-
-            if (!completeTask.IsActive) throw new Exception("Zadanie nie istnieje w bazie danych");
-
-            if (completeTask.IsCompleted == true) throw new Exception("Zadanie jest już wykonane");
-
-            completeTask.IsCompleted = true;
-
-            completeTask.CompletedDate = DateTime.Now;
-
-            await _todoRepository.CompleteTask(completeTask, taskId);
         }
     }
 }

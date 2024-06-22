@@ -1,7 +1,8 @@
-﻿using BackOffice.ApiModel;
-using BackOffice.DataModels.Todo;
-using BackOffice.Interfaces.Todo;
+﻿using BackOffice.Interfaces.Todo;
+using Shared.Models.Todo.ApiModels;
+using Shared.Models.Todo.DataModels;
 using Shared.Models.Todo.DTOsModel;
+
 
 
 namespace BackOffice.Services

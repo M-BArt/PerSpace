@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Text.Json;
-using ReverseProxy.ApiModel;
+﻿using Azure.Core;
+using Newtonsoft.Json;
+using Shared.Models.Todo.ApiModels;
 using Shared.Models.Todo.DTOsModel;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace ReverseProxy.Services
@@ -17,14 +21,76 @@ namespace ReverseProxy.Services
             _logger = logger;
         }
 
+        public async Task CompleteTask(Guid taskId)
+        {
+            try
+            {
+                using HttpClient client = _httpClientFactory.CreateClient("TodoAppBackoffice");
+
+                using var httpResponseMessage =
+                 await client.PostAsync($"Todo/{taskId}/complete",null);
+
+                httpResponseMessage.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error getting something fun to say: {Error}", ex);
+            }
+        }
+
+        public async Task Create(TodoCreateRequest request)
+        {
+            try
+            {
+                using HttpClient client = _httpClientFactory.CreateClient("TodoAppBackoffice");
+
+                StringContent content = new StringContent(
+                    JsonConvert.SerializeObject(request),
+                    Encoding.UTF8,
+                    Application.Json);
+
+                using var httpResponseMessage =
+                 await client.PostAsync($"Todo", content);
+
+                httpResponseMessage.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error getting something fun to say: {Error}", ex);
+            }
+        }
+
+        public Task Delete(Guid taskId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<TodoGetTaskDto> GetTask(Guid taskId)
+        {
+            using HttpClient client = _httpClientFactory.CreateClient("TodoAppClient");
+
+            try
+            {
+                TodoGetTaskDto? todo = await client.GetFromJsonAsync<TodoGetTaskDto>(
+                    $"Todo/{taskId}",
+                    new JsonSerializerOptions(JsonSerializerDefaults.Web));
+
+                return todo;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error getting something fun to say: {Error}", ex);
+            }
+
+            return null;
+        }
+
         public async Task<IEnumerable<TodoGetAllDto>> TodoGetAll()
         {
             using HttpClient client = _httpClientFactory.CreateClient("TodoAppClient");
 
             try
             {
-                // Make HTTP GET request
-                // Parse JSON response deserialize into Todo type
                 IEnumerable<TodoGetAllDto>? todos = await client.GetFromJsonAsync<IEnumerable<TodoGetAllDto>>(
                     $"Todo",
                     new JsonSerializerOptions(JsonSerializerDefaults.Web));
@@ -39,82 +105,26 @@ namespace ReverseProxy.Services
             return [];
         }
 
-        //public async Task Create(TodoCreateRequest request)
-        //{
-        //    var todoTask = new TodoCreate
-        //    {
-        //        Title = request.Title,
-        //        Description = request.Description,
-        //        Category = request.Category,
-        //        Recurring = request.Recurring,
-        //        DueDate = request.DueDate
-        //    };
+        public async Task Update(TodoUpdateRequest request, Guid taskId)
+        {
+            try
+            {
+                using HttpClient client = _httpClientFactory.CreateClient("TodoAppBackoffice");
 
-        //    if (todoTask.DueDate <= DateTime.Now)
-        //        throw new Exception("Invalid date");
+                StringContent content = new StringContent(
+                    JsonConvert.SerializeObject(request),
+                    Encoding.UTF8,
+                    Application.Json);
 
-        //    await _todoRepository.Create(todoTask);
-        //}
+                using var httpResponseMessage =
+                 await client.PutAsync($"Todo/{taskId}", content);
 
-        //public async Task Delete(Guid taskId)
-        //{
-        //    await _todoRepository.Delete(taskId);
-        //}
-
-        //public async Task<TodoGetTaskDto> GetTask(Guid taskId)
-        //{
-        //    var todoTaskData = await _todoRepository.GetTask(taskId);
-
-        //    var todoTask = new TodoGetTaskDto
-        //    {
-        //        Title = todoTaskData.Title,
-        //        Description = todoTaskData.Description,
-        //        Category = todoTaskData.Category,
-        //        Recurring = todoTaskData.Recurring,
-        //        DueDate = todoTaskData.DueDate,
-        //        IsCompleted = todoTaskData.IsCompleted,
-        //        CompletedDate = todoTaskData.CompletedDate,
-        //        IsActive = todoTaskData.IsActive
-        //    };
-
-        //    return todoTask;
-        //}
-
-        //public async Task Update(TodoUpdateRequest request, Guid taskId)
-        //{
-
-        //    var todoTask = new TodoUpdate
-        //    {
-        //        Title = request.Title,
-        //        Recurring = request.Recurring,
-        //        Description = request.Description,
-        //        Category = request.Category,
-        //        DueDate = request.DueDate
-        //    };
-
-        //    await _todoRepository.Update(todoTask, taskId);
-        //}
-
-        //public async Task CompleteTask(Guid taskId)
-        //{
-        //    TodoGetTask task = await _todoRepository.GetTask(taskId);
-
-        //    var completeTask = new TodoCompleteTask
-        //    {
-        //        IsCompleted = task.IsCompleted,
-        //        CompletedDate = task.CompletedDate,
-        //        IsActive = task.IsActive,
-        //    };
-
-        //    if (!completeTask.IsActive) throw new Exception("Zadanie nie istnieje w bazie danych");
-
-        //    if (completeTask.IsCompleted == true) throw new Exception("Zadanie jest już wykonane");
-
-        //    completeTask.IsCompleted = true;
-
-        //    completeTask.CompletedDate = DateTime.Now;
-
-        //    await _todoRepository.CompleteTask(completeTask, taskId);
-        //}
+                httpResponseMessage.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error getting something fun to say: {Error}", ex);
+            }
+        }
     }
 }

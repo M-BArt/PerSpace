@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using PerSpace.Domain.DataModels.User;
 using PerSpace.Domain.Interfaces;
+using Shared.Models.User.User;
 
 namespace PerSpace.Infrastructure.Data.Repositories
 {

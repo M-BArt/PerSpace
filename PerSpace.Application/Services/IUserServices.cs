@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PerSpace.Application.ApiModel;
-using PerSpace.Domain.DataModels.User;
+using Shared.Models.User.User;
 
 namespace PerSpace.Application.Services
 {

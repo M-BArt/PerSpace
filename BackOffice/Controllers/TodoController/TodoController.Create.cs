@@ -1,5 +1,5 @@
-﻿using BackOffice.ApiModel;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Shared.Models.Todo.ApiModels;
 
 namespace BackOffice.Controllers.Todo
 {

@@ -1,4 +1,6 @@
-﻿using BackOffice.DataModels.Todo;
+﻿
+
+using Shared.Models.Todo.DataModels;
 
 namespace BackOffice.Interfaces.Todo
 {
