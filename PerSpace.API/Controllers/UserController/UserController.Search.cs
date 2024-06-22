@@ -17,6 +17,7 @@ namespace PerSpace.API.Controllers.UserController
 
             try
             {
+                await _userSrevice.Get(userId);
                 return Ok("Pobrano dane użytkownika");
 
             }

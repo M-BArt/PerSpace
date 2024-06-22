@@ -42,7 +42,7 @@ namespace PerSpace.Infrastructure.Data.Repositories.Todo
             using (SqlConnection connection = new(_connectionString))
             {
                 await connection.OpenAsync();
-                var query = "UPDATE Tasks SET IsActive = 0 WHERE Id = @Id AND WHERE IsActive = 1";
+                var query = "UPDATE Tasks SET IsActive = 0 WHERE Id = @Id AND IsActive = 1";
                 await connection.ExecuteAsync(query, new { Id = taskId });
             }
         }

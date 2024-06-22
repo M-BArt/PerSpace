@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PerSpace.Application.ApiModel
+namespace PerSpace.Application.ApiModel.Todo
 {
     public class TodoCreateRequest
     {

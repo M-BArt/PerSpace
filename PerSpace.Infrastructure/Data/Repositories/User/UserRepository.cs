@@ -7,9 +7,9 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using PerSpace.Domain.DataModels.User;
-using PerSpace.Domain.Interfaces;
+using PerSpace.Domain.Interfaces.User;
 
-namespace PerSpace.Infrastructure.Data.Repositories
+namespace PerSpace.Infrastructure.Data.Repositories.User
 {
     internal class UserRepository : IUserRepository
     {
@@ -30,23 +30,37 @@ namespace PerSpace.Infrastructure.Data.Repositories
             }
         }
 
-        public async Task<UserGet> GetProfile(Guid userId)
+        public async Task<UserProfile> GetProfile(Guid userId)
         {
             using (SqlConnection connection = new(_connectionString))
             {
                 await connection.OpenAsync();
                 var query = "SELECT * FROM User WHERE Id = @userId";
-                return await connection.QuerySingleAsync<UserGet>(query, userId);
+                return await connection.QuerySingleAsync<UserProfile>(query, userId);
             }
         }
 
-        public async Task<IEnumerable<UserGetAll>> GetAll()
+        public async Task<IEnumerable<UserProfile>> GetAll()
         {
             using (SqlConnection connection = new(_connectionString))
             {
                 await connection.OpenAsync();
                 var query = "SELECT * FROM User";
-                return await connection.QueryAsync<UserGetAll>(query);
+                return await connection.QueryAsync<UserProfile>(query);
+            }
+        }
+        public async Task Update(UserProfile user, Guid userId)
+        {
+            using (SqlConnection connection = new(_connectionString))
+            {
+                DynamicParameters _params = new DynamicParameters();
+
+                _params.AddDynamicParams(user);
+                _params.Add("userId", userId);
+                
+                await connection.OpenAsync();
+                var query = "UPDATE USER SET Email = @Email, Firstname = @Firstname, Lastname = @Lastname WHERE Id = @usedId;";
+                await connection.ExecuteAsync(query, _params);
             }
         }
 
@@ -68,6 +82,6 @@ namespace PerSpace.Infrastructure.Data.Repositories
                 var query = "INSERT INTO Tasks (Email, Password, Firstname, Lastname) VALUES(@Email, @Password, @Firstname, @Lastname)";
                 await connection.ExecuteAsync(query, user);
             }
-        }
+        } 
     }
 }

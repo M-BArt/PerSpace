@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PerSpace.Application.ApiModel;
+using PerSpace.Application.ApiModel.Todo;
 
 namespace PerSpace.API.Controllers.Todo
 {
@@ -7,7 +7,7 @@ namespace PerSpace.API.Controllers.Todo
     {
         // PATCH: /Todo/{taskid}
         /// <summary>
-        /// Akcja do usuwania zadania (Task) w bazie danych.
+        /// Akcja do aktualizowania zadania (Task) w bazie danych.
         /// </summary>
         /// /// <param name="taskId"></param>
         [HttpPatch("Todo/{taskId}")]

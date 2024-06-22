@@ -8,7 +8,6 @@ namespace PerSpace.API.Controllers.UserController
         /// <summary>
         /// Akcja do pobierania listy użytkowników.
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet("users")]
         public async Task<IActionResult> GetAll()
@@ -17,6 +16,7 @@ namespace PerSpace.API.Controllers.UserController
 
             try
             {
+                await _userSrevice.GetAll();
                 return Ok("Pobrano wszystkich użytkowników");
 
             }

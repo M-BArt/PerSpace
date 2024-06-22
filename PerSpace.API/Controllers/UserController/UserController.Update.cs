@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PerSpace.Application.ApiModel.User;
 
 namespace PerSpace.API.Controllers.UserController
 {
@@ -11,12 +12,13 @@ namespace PerSpace.API.Controllers.UserController
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPost("user/{userId}")]
-        public async Task<IActionResult> Update([FromRoute] Guid userId)
+        public async Task<IActionResult> Update([FromBody] UserUpdateRequest request, [FromRoute] Guid userId)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             try
             {
+                
                 return Ok("Zaktualizowano dane użytkownika");
 
             }

@@ -9,9 +9,7 @@ namespace PerSpace.Domain.DataModels.User
 {
     public class UserCreate
     {
-        [Required]
         public string Email { get; set; }
-        [Required]
         public string Password { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }

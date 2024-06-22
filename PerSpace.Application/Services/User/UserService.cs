@@ -1,9 +1,9 @@
 ﻿using System.Security.Cryptography;
-using PerSpace.Application.ApiModel;
+using PerSpace.Application.ApiModel.User;
 using PerSpace.Domain.DataModels.User;
-using PerSpace.Domain.Interfaces;
+using PerSpace.Domain.Interfaces.User;
 
-namespace PerSpace.Application.Services
+namespace PerSpace.Application.Services.User
 {
     internal class UserService : IUserServices
     {
@@ -14,24 +14,32 @@ namespace PerSpace.Application.Services
             _userRepository = userRepository;
         }
 
-        public Task Delete(Guid userId)
+        public async Task Delete(Guid userId)
         {
-            throw new NotImplementedException();
+            await _userRepository.Delete(userId);
         }
 
-        public Task<UserGet> Get(Guid userId)
+        public async Task<UserProfile> Get(Guid userId)
         {
-            throw new NotImplementedException();
+            return await _userRepository.GetProfile(userId);
         }
 
-        public Task<IEnumerable<UserGetAll>> GetAll()
+        public async Task<IEnumerable<UserProfile>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _userRepository.GetAll();
         }
 
-        public Task<IEnumerable<UserGetAll>> GetAll(Guid userId)
+        public async Task Update(UserUpdateRequest request, Guid userId)
         {
-            throw new NotImplementedException();
+            var user = new UserProfile
+            {
+                Email = request.Email,
+                Firstname = request.Firstname,
+                Lastname = request.Lastname,
+            };
+            
+            
+            await _userRepository.Update(user, userId);
         }
 
         public Task Login(UserLoginRequest request, Guid userId)
@@ -69,11 +77,6 @@ namespace PerSpace.Application.Services
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
             return (passwordSalt, passwordHash);
-        }
-
-        private static void EmailValidation(string email)
-        {
-
         }
     }
 }

@@ -11,7 +11,7 @@
             <param name="taskId"></param>
             <returns></returns>
         </member>
-        <member name="M:PerSpace.API.Controllers.Todo.TodoController.Create(PerSpace.Application.ApiModel.TodoCreateRequest)">
+        <member name="M:PerSpace.API.Controllers.Todo.TodoController.Create(PerSpace.Application.ApiModel.Todo.TodoCreateRequest)">
             <summary>
             Akcja do tworzenia nowego zadania (Task) w bazie danych.
             </summary>
@@ -33,13 +33,13 @@
             Akcja do pobierania wszystkich aktywnych zadań (Tasks).
             </summary>
         </member>
-        <member name="M:PerSpace.API.Controllers.Todo.TodoController.Update(PerSpace.Application.ApiModel.TodoUpdateRequest,System.Guid)">
+        <member name="M:PerSpace.API.Controllers.Todo.TodoController.Update(PerSpace.Application.ApiModel.Todo.TodoUpdateRequest,System.Guid)">
             <summary>
-            Akcja do usuwania zadania (Task) w bazie danych.
+            Akcja do aktualizowania zadania (Task) w bazie danych.
             </summary>
             /// <param name="taskId"></param>
         </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Delete">
+        <member name="M:PerSpace.API.Controllers.UserController.UserController.Delete(System.Guid)">
             <summary>
             Akcja do usuwania użytkownika.
             </summary>
@@ -50,17 +50,16 @@
             <summary>
             Akcja do pobierania listy użytkowników.
             </summary>
-            <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Login(PerSpace.Application.ApiModel.UserLoginRequest)">
+        <member name="M:PerSpace.API.Controllers.UserController.UserController.Login(PerSpace.Application.ApiModel.User.UserLoginRequest)">
             <summary>
             Akcja do logowania się użytkownika.
             </summary>
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Register(PerSpace.Application.ApiModel.UserRegisterRequest)">
+        <member name="M:PerSpace.API.Controllers.UserController.UserController.Register(PerSpace.Application.ApiModel.User.UserRegisterRequest)">
             <summary>
             Akcja do rejestracji użytkownika.
             </summary>
@@ -74,7 +73,7 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Update(System.Guid)">
+        <member name="M:PerSpace.API.Controllers.UserController.UserController.Update(PerSpace.Application.ApiModel.User.UserUpdateRequest,System.Guid)">
             <summary>
             Akcja do aktualizowania danych użytkownika.
             </summary>

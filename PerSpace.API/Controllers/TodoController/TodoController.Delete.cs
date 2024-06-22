@@ -9,7 +9,7 @@ namespace PerSpace.API.Controllers.Todo
         /// Akcja do usuwania zadania (Task) w bazie danych.
         /// </summary>
         /// /// <param name="taskId"></param>
-        [HttpDelete("Todo/{taskId}")]
+        [HttpPut("Todo/{taskId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid taskId)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

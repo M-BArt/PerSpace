@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PerSpace.Application.Services;
+using PerSpace.Application.Services.User;
 
 namespace PerSpace.API.Controllers.UserController
 {

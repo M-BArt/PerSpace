@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace PerSpace.API.Controllers.UserController
 {
@@ -11,12 +12,13 @@ namespace PerSpace.API.Controllers.UserController
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPut("user/{userId}")]
-        public async Task<IActionResult> Delete()
+        public async Task<IActionResult> Delete(Guid userId)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             try
             {
+                await _userSrevice.Delete(userId);
                 return Ok("Usunięto użytkownika");
 
             } catch (Exception ex)

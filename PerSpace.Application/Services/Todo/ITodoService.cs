@@ -1,8 +1,8 @@
-﻿using PerSpace.Application.ApiModel;
-using PerSpace.Application.DTOsModel;
+﻿using PerSpace.Application.ApiModel.Todo;
+using PerSpace.Application.DTOsModel.Todo;
 using PerSpace.Domain.DataModels.Todo;
 
-namespace PerSpace.Application.Services
+namespace PerSpace.Application.Services.Todo
 {
     public interface ITodoService
     {
