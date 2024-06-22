@@ -1,5 +1,7 @@
 
 using System.Security.Cryptography.X509Certificates;
+using ReverseProxy.Data.Repositories.User;
+using ReverseProxy.Interfaces.User;
 using ReverseProxy.Services;
 
 namespace ReverseProxy
@@ -16,6 +18,9 @@ namespace ReverseProxy
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<ITodoService, TodoService>();
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserServices, UserService>();
 
             //Dodanie PerSpace klienta
             builder.Services.AddHttpClient("TodoAppClient", httpClient =>

@@ -1,9 +1,9 @@
 ﻿using PerSpace.Application.ApiModel;
-using PerSpace.Domain.Interfaces;
+using ReverseProxy.Interfaces.User;
 using Shared.Models.User.User;
 using System.Security.Cryptography;
 
-namespace PerSpace.Application.Services
+namespace ReverseProxy.Services
 {
     internal class UserService : IUserServices
     {

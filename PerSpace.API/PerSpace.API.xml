@@ -14,47 +14,5 @@
             Akcja do pobierania wszystkich aktywnych zadań (Tasks).
             </summary>
         </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Delete">
-            <summary>
-            Akcja do usuwania użytkownika.
-            </summary>
-            <param name="userId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.GetAll">
-            <summary>
-            Akcja do pobierania listy użytkowników.
-            </summary>
-            <param name="userId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Login(PerSpace.Application.ApiModel.UserLoginRequest)">
-            <summary>
-            Akcja do logowania się użytkownika.
-            </summary>
-            <param name="userId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Register(PerSpace.Application.ApiModel.UserRegisterRequest)">
-            <summary>
-            Akcja do rejestracji użytkownika.
-            </summary>
-            <param name="userId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Search(System.Guid)">
-            <summary>
-            Akcja do pobierania danych o użytkowniku.
-            </summary>
-            <param name="userId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:PerSpace.API.Controllers.UserController.UserController.Update(System.Guid)">
-            <summary>
-            Akcja do aktualizowania danych użytkownika.
-            </summary>
-            <param name="userId"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>

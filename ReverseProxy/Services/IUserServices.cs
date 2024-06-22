@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PerSpace.Application.ApiModel;
+﻿using PerSpace.Application.ApiModel;
 using Shared.Models.User.User;
 
-namespace PerSpace.Application.Services
+namespace ReverseProxy.Services
 {
     public interface IUserServices
     {

@@ -1,6 +1,6 @@
 ﻿using Shared.Models.User.User;
 
-namespace PerSpace.Domain.Interfaces
+namespace ReverseProxy.Interfaces.User
 {
     public interface IUserRepository
     {

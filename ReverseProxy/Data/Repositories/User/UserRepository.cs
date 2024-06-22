@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using PerSpace.Domain.Interfaces;
+using ReverseProxy.Interfaces.User;
 using Shared.Models.User.User;
 
-namespace PerSpace.Infrastructure.Data.Repositories
+namespace ReverseProxy.Data.Repositories.User
 {
     internal class UserRepository : IUserRepository
     {

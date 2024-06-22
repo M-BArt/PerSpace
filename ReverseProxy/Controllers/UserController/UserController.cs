@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PerSpace.Application.Services;
+using ReverseProxy.Services;
 
 namespace PerSpace.API.Controllers.UserController
 {

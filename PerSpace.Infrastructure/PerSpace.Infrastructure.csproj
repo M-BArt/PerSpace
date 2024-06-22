@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PerSpace.Application\PerSpace.Application.csproj" />
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <Compile Remove="Recources\**" />
+    <EmbeddedResource Remove="Recources\**" />
+    <None Remove="Recources\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Recources\Todo\" />
+    <ProjectReference Include="..\PerSpace.Application\PerSpace.Application.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>
