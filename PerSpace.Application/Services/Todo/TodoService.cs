@@ -1,23 +1,19 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using PerSpace.Application.ApiModel;
-using PerSpace.Application.DTOsModel;
-using PerSpace.Domain.DataModels;
-using PerSpace.Domain.Interfaces;
-using PerSpace.Domain.Services;
+﻿using Microsoft.Extensions.Logging;
+using PerSpace.Application.ApiModel.Todo;
+using PerSpace.Application.DTOsModel.Todo;
+using PerSpace.Domain.DataModels.Todo;
+using PerSpace.Domain.Interfaces.Todo;
 
 
-namespace PerSpace.Application.Services
+namespace PerSpace.Application.Services.Todo
 {
     public class TodoService : ITodoService
     {
         private readonly ITodoRepository _todoRepository;
-        private readonly TodoDomainService _todoDomainService;
         private readonly ILogger<TodoService> _logger;
-        public TodoService(ITodoRepository todoRepository,TodoDomainService todoDomainService, ILogger<TodoService> logger)
+        public TodoService(ITodoRepository todoRepository, ILogger<TodoService> logger)
         {
             _todoRepository = todoRepository;
-            _todoDomainService = todoDomainService;
             _logger = logger;
         }
 
@@ -51,7 +47,8 @@ namespace PerSpace.Application.Services
                 DueDate = request.DueDate
             };
 
-            await _todoDomainService.DateValidation(todoTask.DueDate);
+            if (todoTask.DueDate <= DateTime.Now)
+                throw new Exception("Invalid date");
 
             await _todoRepository.Create(todoTask);
         }
@@ -61,9 +58,23 @@ namespace PerSpace.Application.Services
             await _todoRepository.Delete(taskId);
         }
 
-        public async Task<TodoGetTask> GetTask(Guid taskId)
+        public async Task<TodoGetTaskDto> GetTask(Guid taskId)
         {
-            return await _todoRepository.GetTask(taskId);
+            var todoTaskData = await _todoRepository.GetTask(taskId);
+
+            var todoTask = new TodoGetTaskDto
+            {
+                Title = todoTaskData.Title,
+                Description = todoTaskData.Description,
+                Category = todoTaskData.Category,
+                Recurring = todoTaskData.Recurring,
+                DueDate = todoTaskData.DueDate,
+                IsCompleted = todoTaskData.IsCompleted,
+                CompletedDate = todoTaskData.CompletedDate,
+                IsActive = todoTaskData.IsActive
+            };
+
+            return todoTask;
         }
 
         public async Task Update(TodoUpdateRequest request, Guid taskId)
@@ -92,7 +103,13 @@ namespace PerSpace.Application.Services
                 IsActive = task.IsActive,
             };
 
-            completeTask = await _todoDomainService.MarkCompleteTask(completeTask);
+            if (!completeTask.IsActive) throw new Exception("Zadanie nie istnieje w bazie danych");
+
+            if (completeTask.IsCompleted == true) throw new Exception("Zadanie jest już wykonane");
+
+            completeTask.IsCompleted = true;
+
+            completeTask.CompletedDate = DateTime.Now;
 
             await _todoRepository.CompleteTask(completeTask, taskId);
         }

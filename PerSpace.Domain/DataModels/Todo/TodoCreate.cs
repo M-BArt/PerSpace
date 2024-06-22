@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PerSpace.Application.ApiModel
+namespace PerSpace.Domain.DataModels.Todo
 {
-    public class TodoCreateRequest
+    public class TodoCreate
     {
-        [Required(ErrorMessage = "Tytuł dla zadania jest wymagany.")]
         public string Title { get; set; } = null!;
         public bool Recurring { get; set; } = false;
         public string? Description { get; set; }
