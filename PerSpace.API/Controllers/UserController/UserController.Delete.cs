@@ -7,7 +7,7 @@ namespace PerSpace.API.Controllers.UserController
     {
         //PUT: /user/{userId}
         /// <summary>
-        /// Akcja do usuwania użytkownika.
+        /// Action to remove the user.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -19,7 +19,7 @@ namespace PerSpace.API.Controllers.UserController
             try
             {
                 await _userSrevice.Delete(userId);
-                return Ok("Usunięto użytkownika");
+                return Ok("User removed");
 
             } catch (Exception ex)
             {

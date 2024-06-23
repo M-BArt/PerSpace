@@ -7,7 +7,7 @@ namespace PerSpace.API.Controllers.UserController
     {
         //POST: /user/register
         /// <summary>
-        /// Akcja do rejestracji użytkownika.
+        /// Action to register a user.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -18,7 +18,7 @@ namespace PerSpace.API.Controllers.UserController
 
             try
             {
-                return Ok("Zarejestrowano użytkownika");
+                return Ok("User registered");
 
             }
             catch (Exception ex)

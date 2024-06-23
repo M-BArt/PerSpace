@@ -6,7 +6,7 @@ namespace PerSpace.API.Controllers.UserController
     {
         //GET: /user
         /// <summary>
-        /// Akcja do pobierania listy użytkowników.
+        /// Action to get the list of users.
         /// </summary>
         /// <returns></returns>
         [HttpGet("users")]
@@ -17,7 +17,7 @@ namespace PerSpace.API.Controllers.UserController
             try
             {
                 await _userSrevice.GetAll();
-                return Ok("Pobrano wszystkich użytkowników");
+                return Ok("Downloaded all users");
 
             }
             catch (Exception ex)

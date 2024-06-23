@@ -6,7 +6,7 @@ namespace PerSpace.API.Controllers.Todo
     {
         // GET: /Todo/
         /// <summary>
-        /// Akcja do pobierania wszystkich aktywnych zadań (Tasks).
+        /// Action to download all active tasks (Tasks).
         /// </summary>
         [HttpGet("Todo")]
         public async Task<IActionResult> GetTodoList()

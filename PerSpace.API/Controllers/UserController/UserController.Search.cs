@@ -6,7 +6,7 @@ namespace PerSpace.API.Controllers.UserController
     {
         //GET: /user/{userId}
         /// <summary>
-        /// Akcja do pobierania danych o użytkowniku.
+        /// Action to download user data.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -18,7 +18,7 @@ namespace PerSpace.API.Controllers.UserController
             try
             {
                 await _userSrevice.Get(userId);
-                return Ok("Pobrano dane użytkownika");
+                return Ok("User data was downloaded");
 
             }
             catch (Exception ex)

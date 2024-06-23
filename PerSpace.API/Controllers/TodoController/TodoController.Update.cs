@@ -7,7 +7,7 @@ namespace PerSpace.API.Controllers.Todo
     {
         // PATCH: /Todo/{taskid}
         /// <summary>
-        /// Akcja do aktualizowania zadania (Task) w bazie danych.
+        /// Action to update a task (Task) in the database.
         /// </summary>
         /// /// <param name="taskId"></param>
         [HttpPatch("Todo/{taskId}")]
@@ -18,7 +18,7 @@ namespace PerSpace.API.Controllers.Todo
             try
             {
                 await _todoService.Update(request, taskId);
-                return Ok("Zadanie zaktualizowane");
+                return Ok("Task updated");
             }
             catch (Exception ex)
             {

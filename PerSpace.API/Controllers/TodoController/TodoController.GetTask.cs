@@ -6,7 +6,7 @@ namespace PerSpace.API.Controllers.Todo
     {
         // GET: /Todo/{taskId}
         /// <summary>
-        /// Akcja do pobierania aktywnego zadania (Task) po Id.
+        /// Action to get active task (Task) by Id
         /// </summary>
         [HttpGet("Todo/{taskId}")]
         public async Task<IActionResult> GetTask([FromRoute] Guid taskId)

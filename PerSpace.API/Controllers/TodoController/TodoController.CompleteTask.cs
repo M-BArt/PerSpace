@@ -6,7 +6,7 @@ namespace PerSpace.API.Controllers.Todo
     {
         // POST: /Todo/{taskId}/complete
         /// <summary>
-        /// Akcja do zakończenia zadania (Task).
+        /// Action to complete the task (Task)
         /// </summary>
         /// <param name="taskId"></param>
         /// <returns></returns>
@@ -18,7 +18,7 @@ namespace PerSpace.API.Controllers.Todo
             try
             {
                 await _todoService.CompleteTask(taskId);
-                return Ok("Zadanie wykonane");
+                return Ok("Task completed");
             }
             catch (Exception ex)
             {

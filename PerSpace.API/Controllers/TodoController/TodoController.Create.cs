@@ -7,7 +7,7 @@ namespace PerSpace.API.Controllers.Todo
     {
         // POST: /Todo/
         /// <summary>
-        /// Akcja do tworzenia nowego zadania (Task) w bazie danych.
+        /// Action to create a new task (Task) in the database.
         /// </summary>
         /// <param name="request"></param>
         [HttpPost("Todo")]
@@ -18,7 +18,7 @@ namespace PerSpace.API.Controllers.Todo
             try
             {
                 await _todoService.Create(request);
-                return Ok("Stworzono nowe zadanie w bazie danych");
+                return Ok("Created a new task in the database");
             }
             catch (Exception ex)
             {

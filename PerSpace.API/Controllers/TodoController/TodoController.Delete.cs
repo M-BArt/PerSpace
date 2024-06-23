@@ -6,7 +6,7 @@ namespace PerSpace.API.Controllers.Todo
     {
         // DELETE: /Todo/{task_id}
         /// <summary>
-        /// Akcja do usuwania zadania (Task) w bazie danych.
+        /// Action to delete a task (Task) in the database.
         /// </summary>
         /// /// <param name="taskId"></param>
         [HttpPut("Todo/{taskId}")]
@@ -17,7 +17,7 @@ namespace PerSpace.API.Controllers.Todo
             try
             {
                 await _todoService.Delete(taskId);
-                return Ok("Usunięto zadanie z bazy danych");
+                return Ok("Deleted task from database");
             }
             catch (Exception ex)
             {

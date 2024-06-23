@@ -7,7 +7,7 @@ namespace PerSpace.API.Controllers.UserController
     {
         //POST: /user/{userId}
         /// <summary>
-        /// Akcja do aktualizowania danych użytkownika.
+        /// Action to update user data.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -18,9 +18,7 @@ namespace PerSpace.API.Controllers.UserController
 
             try
             {
-                
-                return Ok("Zaktualizowano dane użytkownika");
-
+                return Ok("User data updated");
             }
             catch (Exception ex)
             {

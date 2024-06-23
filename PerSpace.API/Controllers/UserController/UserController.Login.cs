@@ -7,7 +7,7 @@ namespace PerSpace.API.Controllers.UserController
     {
         //POST: /user/login
         /// <summary>
-        /// Akcja do logowania się użytkownika.
+        /// Action for user login.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -18,8 +18,7 @@ namespace PerSpace.API.Controllers.UserController
 
             try
             {
-                return Ok("Zalogowano użytkownika");
-
+                return Ok("User logged in");
             }
             catch (Exception ex)
             {
